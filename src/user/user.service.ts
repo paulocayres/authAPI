@@ -19,16 +19,10 @@ export class UserService {
 
     }
 
-    async login(user: UserDTO){
-        const findedUser =  await this.userModel.findOne({email: user.email}).exec();
-        Logger.log(user);
-        Logger.log(findedUser);
-        if (findedUser && findedUser.password == user.password){
-            return {message: 'login realizado com sucesso'};
-        } else {
-            return {message: 'falha no login'};
-        }
+    async findOne(user: UserDTO) {
 
+        //Logger.log(user);
+        return await this.userModel.findOne({username: user.username}).exec();
     }
 
 }
